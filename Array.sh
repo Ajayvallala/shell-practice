@@ -2,4 +2,4 @@
 
 MOVIES=("BAHUBALI" "VARSHAM" "MIRCHI" "BILLA")
 
-echo "${MOVIES[0 .. 2]}"
+echo "${MOVIES[0..2]}"
