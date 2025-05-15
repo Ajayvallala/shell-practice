@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NUBMER1=200
+NUMBER2=500
+
+SUM=$NUBMER1+$NUMBER2
+
+echo $SUM
