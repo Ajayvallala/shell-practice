@@ -10,13 +10,21 @@ else
  exit 1
 fi 
 
-echo "Package installation started"
+echo "checking is package already installed are not"
 
-dnf install nginx123 -y
+dnf installed list nginx
+
 if [ $? -eq 0 ]
 then
- echo "Package installation success"
+ echo "Package already installed"
 else
- echo "Package installation was not successfull"
- exit 1
+ echo "Package was not installed going to install"
+ dnf install nginx -y
+ if [ $? -eq 0 ]
+ then 
+  echo "package installation was successfull"
+ else
+  echo "package installation was not successfull"
+  exit 1
+ fi
 fi
