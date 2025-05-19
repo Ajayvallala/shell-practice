@@ -3,3 +3,9 @@
 echo "All the variables passed to script : $@"
 echo "Total number of variables passed to script : $#"
 echo "Script name : $0"
+echo "current directory where script is running: $PWD"
+echo "user who running the script : $USER"
+echo "Home directory of user running the script : $HOME"
+echo "pid of the script: $$"
+sleep 10&
+echo "pid of last commond running in background : $!"
