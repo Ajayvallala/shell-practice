@@ -3,10 +3,9 @@
 if [ $1 -eq 10 ]
 then 
  echo "Please enter number other than 10"
- if [ $1 -le 10 ]
- then
-  echo "Given number $1 is less than 10"
- else
-  echo "Given number $1 is not lessthan 10"
- fi  
+elif [ $1 -le 10 ]
+ echo "$1 lessthan 10"
+else
+ echo "$1 greaterthan 10"
 fi
+
