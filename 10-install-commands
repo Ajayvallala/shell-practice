@@ -5,7 +5,7 @@ USER=$(id -u)
 if [ $USER -eq 0 ]
 then 
  echo "You are installing packages with root access"
- dnf install nginx -y
+ dnf install nginx123 -y
   if [ $? -eq 0 ]
   then
    echo "Package installation success"
