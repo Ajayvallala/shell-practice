@@ -12,7 +12,7 @@ fi
 
 echo "checking is package already installed are not"
 
-dnf installed list nginx
+dnf list installed nginx
 
 if [ $? -eq 0 ]
 then
