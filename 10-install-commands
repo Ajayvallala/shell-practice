@@ -5,13 +5,16 @@ USER=$(id -u)
 if [ $USER -eq 0 ]
 then 
  echo "You are installing packages with root access"
- dnf install nginx123 -y
-  if [ $? -eq 0 ]
-  then
-   echo "Package installation success"
-  else
-   echo "Package installation was not successfull"
-  fi
 else
  echo "Please run the script with root access"
 fi 
+
+echo "Package installation started"
+
+dnf install nginx123 -y
+if [ $? -eq 0 ]
+then
+ echo "Package installation success"
+else
+ echo "Package installation was not successfull"
+fi
