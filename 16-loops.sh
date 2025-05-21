@@ -8,7 +8,7 @@ W="\e[0m"
 LOG_FOLDER="/var/log/shellscript"
 LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG="$LOG_FOLDER$LOG_FILE_NAME.log"
-PACKAGES=[nginx mysql python3]
+PACKAGES=("nginx" "mysql" "python3")
 
 mkdir -p $LOG_FOLDER
 
@@ -33,10 +33,9 @@ else
 fi
 }
 
-for package in $({PACKAGES[@]})
+for package in ${PACKAGES[@]}
 do
  dnf list installed $package &>> $LOG #Chacking is package already installed or not?
-
  if [ $? -ne 0 ]
  then
   dnf install $package -y &>> $LOG
