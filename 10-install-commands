@@ -1,30 +1,51 @@
 #!/bin/bash
 
-USER=$(id -u)
+USERID=$(id -u) #Getting user id and storing it in USERID variable
 
-if [ $USER -eq 0 ]
-then 
- echo "You are installing packages with root access"
-else
- echo "Please run the script with root access"
- exit 1
-fi 
-
-echo "checking is package already installed are not"
-
-dnf list installed nginx1234
-
-if [ $? -eq 0 ]
+if [ $USERID -ne 0 ]
 then
- echo "Package already installed"
+ echo "You are running the script with normal user, please swith to root user"
 else
- echo "Package was not installed going to install"
+ echo "You are running the script with root user"
+fi
+
+VALIDATE()
+{
+if [ $1 -eq 0 ]
+then
+ echo "$2 installation successfull"
+else 
+ echo "$2 installation was not successfull"
+fi
+}
+
+dnf list installed nginx #Chacking is package already installed or not?
+
+if [ $? -ne 0 ]
+then
  dnf install nginx -y
- if [ $? -eq 0 ]
- then 
-  echo "package installation was successfull"
- else
-  echo "package installation was not successfull"
-  exit 1
- fi
+ VALIDATE &? nginx
+else
+ echo "Nginx package was already installed"
+fi
+
+
+dnf list installed mysql  #Chacking is package already installed or not?
+
+if [ $? -ne 0 ]
+then
+ dnf install mysql -y
+ VALIDATE &? mysql
+else
+ echo "mysql package was already installed"
+fi
+
+dnf list installed python3  #Chacking is package already installed or not?
+
+if [ $? -ne 0 ]
+then
+ dnf install python3 -y
+ VALIDATE &? python3
+else
+ echo "python3 package was already installed"
 fi
