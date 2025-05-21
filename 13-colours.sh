@@ -31,7 +31,7 @@ dnf list installed nginx #Chacking is package already installed or not?
 if [ $? -ne 0 ]
 then
  dnf install nginx -y
- VALIDATE &? nginx
+ VALIDATE $? nginx
 else
  echo -e "$Y Nginx package was already installed $W"
 fi
