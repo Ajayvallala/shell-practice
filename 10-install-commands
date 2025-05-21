@@ -5,6 +5,7 @@ USERID=$(id -u) #Getting user id and storing it in USERID variable
 if [ $USERID -ne 0 ]
 then
  echo "You are running the script with normal user, please swith to root user"
+ exit 1
 else
  echo "You are running the script with root user"
 fi
@@ -16,6 +17,7 @@ then
  echo "$2 installation successfull"
 else 
  echo "$2 installation was not successfull"
+ exit 1
 fi
 }
 
