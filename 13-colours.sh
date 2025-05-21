@@ -1,9 +1,9 @@
 #!/bin/bash
 
-R=\e[31m
-G=\e[32m
-Y=\e[33m
-W=\e[0m
+R=(\e[31m)
+G=(\e[32m)
+Y=(\e[33m)
+W=(\e[0m)
 
 USERID=$(id -u) #Getting user id and storing it in USERID variable
 
