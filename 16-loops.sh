@@ -33,7 +33,7 @@ else
 fi
 }
 
-for package in $(PACKAGES[@])
+for package in $({PACKAGES[@]})
 do
  dnf list installed $package &>> $LOG #Chacking is package already installed or not?
 
