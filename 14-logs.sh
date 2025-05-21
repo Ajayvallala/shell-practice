@@ -6,7 +6,7 @@ Y="\e[33m"
 W="\e[0m"
 
 LOG_FOLDER="/var/log/shellscript"
-LOG_FILE_NAME=(echo $0 | cut -d "." -f1)
+LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG="$LOG_FOLDER$LOG_FILE_NAME.log"
 
 USERID=$(id -u) #Getting user id and storing it in USERID variable
