@@ -29,7 +29,7 @@ then
  rm -rf $filepath
  done <<<$Files_to_delete
 else
- echo "No files are available older than 15 days"
+ echo -e $Y"No files are available older than 15 days$N"
 fi
  
 
