@@ -21,7 +21,7 @@ fi
 
 Files_to_delete=$(find $Source_dir -name "*.log" -mtime +15)
 
-if [ ! -z $Files_to_delete ]
+if [ ! -z "$Files_to_delete" ]
 then
  while IFS= read -r filepath
  do
