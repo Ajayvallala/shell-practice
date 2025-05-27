@@ -16,7 +16,7 @@ then
  echo -e $R"Please switch to root user to run the script"$N
  exit 1
 else
- echo -e $G"You are running the script with root access"$N
+ echo -e "You are running the script with$G root$N access"
 fi
 
 Files_to_delete=$(find $Source_dir -name "*.log" -mtime +15)
@@ -29,9 +29,8 @@ then
     rm -rf $filepath
     done <<<$Files_to_delete
 else
- echo "No files to delete"
+ echo "No files are available older than 15 days"
 fi
-echo "Script execution completed successfully"
  
 
 
