@@ -21,19 +21,16 @@ fi
 
 Files_to_delete=$(find $Source_dir -name "*.log" -mtime +15)
 
-while IFS= read -r filepath
-do
- 
- if [ -f $filepath ]
- then
-  echo -e "$filepath $R Deleted$N"
-
-  rm -rf $filepath
- else
-  echo "No files to delete"
- fi
-done <<<$Files_to_delete
-
+if [ ! -z $Files_to_delete ]
+then
+    while IFS= read -r filepath
+    do
+    echo -e "$filepath $R Deleted$N"
+    rm -rf $filepath
+    done <<<$Files_to_delete
+else
+ echo "No files to delete"
+fi
 echo "Script execution completed successfully"
  
 
