@@ -31,7 +31,7 @@ do
   rm -rf $filepath
  else
   echo "No files to delete"
-
+ fi
 done <<<$Files_to_delete
 
 echo "Script execution completed successfully"
