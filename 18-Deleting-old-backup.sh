@@ -22,7 +22,7 @@ Files_to_delete=$(find $Source_dir -name "*.log" -mtime +15)
 while IFS= read -r filepath
 do
  
- echo "$filepath deleted"
+ echo "$filepath $R deleted$N"
 
  rm -rf $filepath
 
