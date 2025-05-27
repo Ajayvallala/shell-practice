@@ -24,9 +24,13 @@ Files_to_delete=$(find $Source_dir -name "*.log" -mtime +15)
 while IFS= read -r filepath
 do
  
- echo -e "$filepath $R Deleted$N"
+ if [ -f $filepath ]
+ then
+  echo -e "$filepath $R Deleted$N"
 
- rm -rf $filepath
+  rm -rf $filepath
+ else
+  echo "No files to delete"
 
 done <<<$Files_to_delete
 
