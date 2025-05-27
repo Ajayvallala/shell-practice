@@ -23,11 +23,11 @@ Files_to_delete=$(find $Source_dir -name "*.log" -mtime +15)
 
 if [ ! -z $Files_to_delete ]
 then
-    while IFS= read -r filepath
-    do
-    echo -e "$filepath $R Deleted$N"
-    rm -rf $filepath
-    done <<<$Files_to_delete
+ while IFS= read -r filepath
+ do
+ echo -e "$filepath $R Deleted$N"
+ rm -rf $filepath
+ done <<<$Files_to_delete
 else
  echo "No files are available older than 15 days"
 fi
