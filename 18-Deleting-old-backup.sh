@@ -3,6 +3,7 @@
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+N="\e[37m"
 USER_ID=$(id -u)
 LOG_FOLDER="/var/log/Shell_scrip/"
 LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
@@ -13,6 +14,7 @@ Source_dir="/var/log/roboshop.log"
 if [ $USER_ID -ne 0 ]
 then
  echo -e $R"Please switch to root user to run the script"$N
+ exit 1
 else
  echo -e $G"You are running the script with root access"$N
 fi
