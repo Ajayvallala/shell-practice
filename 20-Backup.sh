@@ -42,9 +42,9 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
 if [ ! -z "$FILES" ]
 then
  TIMESTRAMP=$(date +%F-%H-%M-%S)
- ZIP_FILE=$("$DEST_DIR.backup.$TIMESTRAMP.zip")
+ ZIP_FILE=$("$DEST_DIR/backup.$TIMESTRAMP.zip")
  $FILES | zip -@ $ZIP_FILE
- if [ -f $ZIP_FILE ]
+ if [ -f "$ZIP_FILE" ]
  then
   echo "ZIP file creation successfull"
   while IFS= read -r filepath
