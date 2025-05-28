@@ -41,8 +41,8 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS) &>>$LOG_FILE
 
 if [ ! -z "$FILES" ]
 then
- echo "$FILES" | tr ' ' '\n' | awk -F "/" '{print $NF}' >>FILENAMES &>>$LOG_FILE
- echo "Files to Zip are $FILENAMES" | tee -a $LOG_FILE
+ FILENAMES=$(echo "$FILES" | tr ' ' '\n' | awk -F "/" '{print $NF}') &>>$LOG_FILE
+ echo "Files to Zip are "$FILENAMES"" | tee -a $LOG_FILE
  TIMESTRAMP=$(date +%F-%H-%M-%S)
  ZIP_FILE="$DEST_DIR/backup-$TIMESTRAMP.zip"
  echo "$FILES" | tr ' ' '\n' | zip -@ "$ZIP_FILE" &>>$LOG_FILE
