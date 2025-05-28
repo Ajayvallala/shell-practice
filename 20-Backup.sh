@@ -3,6 +3,7 @@
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+B="\e[34m"
 N="\e[37m"
 USER_ID=$(id -u)
 LOG_FOLDER="/var/log/shell_script"
@@ -40,7 +41,7 @@ FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS) &>>$LOG_FILE
 if [ ! -z "$FILES" ]
 then
  FILENAMES=$(echo "$FILES" | tr ' ' '\n' | awk -F "/" '{print $NF}') &>>$LOG_FILE
- echo "Files to Zip are :"$FILENAMES"" | tee -a $LOG_FILE
+ echo "Files to Zip are :$B"$FILENAMES""$N | tee -a $LOG_FILE
  TIMESTRAMP=$(date +%F-%H-%M-%S)
  ZIP_FILE="$DEST_DIR/backup-$TIMESTRAMP.zip"
  echo "$FILES" | tr ' ' '\n' | zip -@ "$ZIP_FILE" &>>$LOG_FILE
@@ -58,7 +59,3 @@ then
 else
  echo -e $Y"No log file older than $DAYS found"$N |  tee -a $LOG_FILE
 fi
-
-
-
-
