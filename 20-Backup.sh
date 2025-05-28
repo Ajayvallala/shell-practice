@@ -19,7 +19,7 @@ then
  echo -e $R"Please switch to root user"$N | tee -a $LOG_FILE
  exit 1
 else
- echo "You are running the script with root user" | tee -a $LOG_FILE
+ echo -e $G"You are running the script with root user"$N | tee -a $LOG_FILE
 fi
 USAGE(){
     echo -e $R"USAGE:$N sudo sh Backup.sh <Source_Dir> <Destination_Dir> <Days>(Optional)" | tee -a $LOG_FILE
@@ -51,14 +51,14 @@ then
   echo "ZIP file creation successfull" | tee -a $LOG_FILE
   while IFS= read -r filepath
   do
-   echo $R"Deleting$N $filepath" | tee -a $LOG_FILE
+   echo -e $R"Deleting$N $filepath" | tee -a $LOG_FILE
    rm -rf $filepath
   done <<<$FILES
  else
-  echo $G"ZIP file creation failure"$N | tee -a $LOG_FILE
+  echo -e $G"ZIP file creation failure"$N | tee -a $LOG_FILE
  fi
 else
- echo $Y"No log file older than $DAYS found"$N |  tee -a $LOG_FILE
+ echo -e $Y"No log file older than $DAYS found"$N |  tee -a $LOG_FILE
 fi
 
 
