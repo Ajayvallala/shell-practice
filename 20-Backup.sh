@@ -39,7 +39,7 @@ fi
 
 FILES=$(find $SOURCE_DIR -name "*.log" -mtime $DAYS)
 
-if [ ! -z $FILES ]
+if [ ! -z "$FILES" ]
 then
  TIMESTRAMP=$(date +%F-%H-%M-%S)
  ZIP_FILE=$("$DEST_DIR.backup.$TIMESTRAMP.zip")
