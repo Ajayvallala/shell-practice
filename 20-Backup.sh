@@ -36,15 +36,15 @@ then
  exit 1
 fi
 
-FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS) &>>$LOG_FILE
+FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS) & >> $LOG_FILE
 
 if [ ! -z "$FILES" ]
 then
- FILENAMES=$(echo "$FILES" | tr ' ' '\n' | awk -F "/" '{print $NF}') & >>$LOG_FILE
+ FILENAMES=$(echo "$FILES" | tr ' ' '\n' | awk -F "/" '{print $NF}') & >> $LOG_FILE
  echo -e "Files to Zip are :$B"$FILENAMES""$N | tee -a $LOG_FILE
  TIMESTRAMP=$(date +%F-%H-%M-%S)
  ZIP_FILE="$DEST_DIR/backup-$TIMESTRAMP.zip"
- find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE" &>>$LOG_FILE
+ find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE" & >> $LOG_FILE
  if [ -f "$ZIP_FILE" ]
  then
   echo -e $G"ZIP file creation successfull"$N | tee -a $LOG_FILE
