@@ -10,7 +10,7 @@ LOG_FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOG_FOLDER$LOG_FILE_NAME.log"
 SOURCE_DIR=$1
 DEST_DIR=$2
-DAYS=${3: -14}
+DAYS=${3:-14}
 
 mkdir -p $LOG_FOLDER
 
@@ -54,6 +54,7 @@ then
   done <<<$FILES
  else
   echo "ZIP file creation failure"
+ fi
 else
  echo "No log file older than $DAYS found"
 fi
