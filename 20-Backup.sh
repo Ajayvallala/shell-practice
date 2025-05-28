@@ -16,13 +16,13 @@ mkdir -p $LOG_FOLDER
 
 if [ $USER_ID -ne 0 ]
 then 
- echo -e $R"Please switch to root user"$N
+ echo -e $R"Please switch to root user"$N | tee -a $LOG_FILE
  exit 1
 else
- echo "You are running the script with root user"
+ echo "You are running the script with root user" | tee -a $LOG_FILE
 fi
 USAGE(){
-    echo -e $R"USAGE:$N sudo sh Backup.sh <Source_Dir> <Destination_Dir> <Days>(Optional)"
+    echo -e $R"USAGE:$N sudo sh Backup.sh <Source_Dir> <Destination_Dir> <Days>(Optional)" | tee -a $LOG_FILE
     exit 1
 }
 
@@ -33,30 +33,32 @@ fi
 
 if [ ! -d "$SOURCE_DIR" ] || [ ! -d "$DEST_DIR" ]
 then
- echo -e $Y"$SOURCE_DIR or $DEST_DIR does not exists please check"$N
+ echo -e $Y"$SOURCE_DIR or $DEST_DIR does not exists please check"$N | tee -a $LOG_FILE
  exit 1
 fi
 
-FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
+FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS) &>>$LOG_FILE
 
 if [ ! -z "$FILES" ]
 then
+ FILENAMES=$(echo $FILES | awk -F "/" '{print $NF}') &>>$LOG_FILE
+ echo "Files to Zip are $FILENAMES" | tee -a $LOG_FILE
  TIMESTRAMP=$(date +%F-%H-%M-%S)
  ZIP_FILE="$DEST_DIR/backup-$TIMESTRAMP.zip"
- find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE"
+ find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE" &>>$LOG_FILE
  if [ -f "$ZIP_FILE" ]
  then
-  echo "ZIP file creation successfull"
+  echo "ZIP file creation successfull" | tee -a $LOG_FILE
   while IFS= read -r filepath
   do
-   echo "Deleting $filepath"
+   echo $R"Deleting$N $filepath" | tee -a $LOG_FILE
    rm -rf $filepath
   done <<<$FILES
  else
-  echo "ZIP file creation failure"
+  echo $G"ZIP file creation failure"$N | tee -a $LOG_FILE
  fi
 else
- echo "No log file older than $DAYS found"
+ echo $Y"No log file older than $DAYS found"$N |  tee -a $LOG_FILE
 fi
 
 
