@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while IFS=read line
+while IFS= read -r line
 do 
  echo $line
  sleep 1
