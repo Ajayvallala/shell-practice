@@ -31,7 +31,7 @@ then
  USAGE
 fi
 
-if [ ! -d "$SOURCE_DIR" ] || [! -d "$DEST_DIR" ]
+if [ ! -d "$SOURCE_DIR" ] || [ ! -d "$DEST_DIR" ]
 then
  echo -e $Y"$SOURCE_DIR or $DEST_DIR does not exists please check"$N
  exit 1
