@@ -16,7 +16,7 @@ mkdir -p $LOG_FOLDER
 
 if [ $USER_ID -ne 0 ]
 then 
- echo -r $R"Please switch to root user"$N
+ echo -e $R"Please switch to root user"$N
  exit 1
 else
  echo "You are running the script with root user"
